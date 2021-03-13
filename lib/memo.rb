@@ -1,8 +1,12 @@
 class Memo < Post
+  def load_data(data_hash)
+    super(data_hash)
+    @text = data_hash['text'].split('\n\r')
+  end
 
   def read_from_console
     puts "Новая заметка (всё, что напишите до строчки \"end\"):"
-    
+
     @text = []
     line = nil
 
@@ -16,7 +20,7 @@ class Memo < Post
   def to_db_hash
     return super.merge(
       {
-        "text": @text.join('\n\r')
+        "text": @text.join('\n')
       }
     )
   end

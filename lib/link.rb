@@ -5,6 +5,11 @@ class Link < Post
     @url = ""
   end
 
+  def load_data(data_hash)
+    super(data_hash)
+    @url = data_hash['url']
+  end
+
   def read_from_console
     puts "Адрес ссылки:"
     @url = STDIN.gets.chomp
